@@ -14,10 +14,10 @@ services:
   api:
     build:
       dockerfile: Dockerfile.dev
-      context: ./server
+      context: ./backend
     volumes:
       - /app/node_modules #dont overwrite/redirect in this dir
-      - ./server:/app 
+      - ./backend:/app 
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379 
@@ -29,15 +29,15 @@ services:
   client:
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./frontend
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./frontend:/app
   worker:
     build:
       dockerfile: Dockerfile.dev
-      context: ./worker
+      context: ./redis
     volumes:
       - /app/node_modules
-      - ./worker:/app
+      - ./redis:/app
 
