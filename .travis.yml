@@ -1,0 +1,21 @@
+sudo: required
+services:
+ - docker
+
+
+before_install:
+ - docker build -t palsonkansakar/fibonacci:v1 -f docker-compose.yml
+
+
+## - docker run -e CI=true palsonkansakar/fibonacci:v1
+script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+deploy:
+  provider: script
+  script: docker push palsonkansakar/fibonacci:v1
+  on:
+    branch: master
+
