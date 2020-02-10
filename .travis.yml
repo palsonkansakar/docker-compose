@@ -4,7 +4,7 @@ services:
 
 
 before_install:
- - docker build -t palsonkansakar/fibonacci:v1 -f docker-compose.yml
+ - docker-compose up
 
 
 ## - docker run -e CI=true palsonkansakar/fibonacci:v1
